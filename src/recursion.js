@@ -94,17 +94,27 @@ var sumBelow = function (n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function (x, y) {
-  if (y - x === 0) {
+
+  if (y - x === 1) {
     return [];
   }
 
-  if (y - x === 2) {
-    return [x + 1];
-  } else {
+  if (y === x) {
+    return [];
+  } else if (y > x) {
     var numbers = range(x, y - 1);
     numbers.push(y - 1);
     return numbers;
+  } else {
+
+    if (x - y === 1) {
+      return [];
+    }
+    var numbers = range(x, y + 1);
+    numbers.push(y + 1);
+    return numbers;
   }
+
 };
 
 // 7. Compute the exponent of a number.
@@ -137,10 +147,25 @@ var exponent = function (base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function (n) {
+
+  if (n === 0) {
+    return false;
+  }
+
+  if (n === 1) {
+    return true;
+  }
+
+  return powerOfTwo(n / 2);
 };
 
 // 9. Write a function that reverses a string.
 var reverse = function (string) {
+  if (string == null || string.length < 2) {
+    return string;
+  }
+  console.log(string)
+  return reverse(string.substring(1)) + string.charAt(0);
 };
 
 // 10. Write a function that determines if a string is a palindrome.
